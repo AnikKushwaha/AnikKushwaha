@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    .navbar h1 {
+      font-size: 20px;
+      color: #007bff;
+    }
+    .navbar ul {
+      display: flex;
+      list-style: none;
+    }
+    .navbar ul li {
+      margin-left: 20px;
+    }
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .navbar ul li a:hover {
+      color: #007bff;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #007bff, #00c6ff);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      max-width: 600px;
+    }
+    .hero button {
+      background: white;
+      color: #007bff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero button:hover {
+      background: #f1f1f1;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
+      background: #fff;
+    }
+    .feature-card {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .feature-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .feature-card h3 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    /* CTA Section */
+    .cta {
+      background: #007bff;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .cta h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .cta button {
+      background: white;
+      color: #007bff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>BrandLogo</h1>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#cta">Get Started</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h2>Welcome to Our Landing Page</h2>
+    <p>We create modern and responsive websites to help you grow your business online.</p>
+    <button onclick="scrollToSection('features')">Learn More</button>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="feature-card">
+      <h3>🚀 Fast</h3>
+      <p>Optimized websites with top-notch performance for all devices.</p>
+    </div>
+    <div class="feature-card">
+      <h3>📱 Responsive</h3>
+      <p>Mobile-friendly designs that look amazing on any screen size.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔒 Secure</h3>
+      <p>Built with security in mind to protect your data and users.</p>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta" id="cta">
+    <h2>Ready to Get Started?</h2>
+    <button>Join Now</button>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>© 2025 Your Company. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll function
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Scroll animation for features
+    const featureCards = document.querySelectorAll('.feature-card');
+    window.addEventListener('scroll', () => {
+      featureCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 50) {
+          card.classList.add('show');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

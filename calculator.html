@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: "Segoe UI", sans-serif;
+    }
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+    }
+    .display {
+      background: rgba(0,0,0,0.6);
+      color: #00ffcc;
+      text-align: right;
+      padding: 15px;
+      font-size: 32px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      min-width: 240px;
+      overflow-x: auto;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    button {
+      padding: 18px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background: #1e1e1e;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transition: all 0.2s ease-in-out;
+    }
+    button:hover {
+      background: #00ffcc;
+      color: #000;
+      transform: scale(1.1);
+    }
+    .operator {
+      background: #ff9800;
+    }
+    .operator:hover {
+      background: #ffc107;
+      color: #000;
+    }
+    .equal {
+      background: #4caf50;
+      grid-column: span 2;
+      border-radius: 25px;
+    }
+    .equal:hover {
+      background: #81c784;
+      color: #000;
+    }
+    .clear {
+      background: #f44336;
+    }
+    .clear:hover {
+      background: #ef5350;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display" class="display">0</div>
+    <div class="buttons">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button class="operator" onclick="press('/')">÷</button>
+
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button class="operator" onclick="press('*')">×</button>
+
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button class="operator" onclick="press('-')">−</button>
+
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="press('+')">+</button>
+
+      <button onclick="backspace()">⌫</button>
+      <button class="equal" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+    let currentInput = "";
+
+    function press(value) {
+      if (display.innerText === "0" && value !== "." && !isNaN(value)) {
+        currentInput = value;
+      } else {
+        currentInput += value;
+      }
+      display.innerText = currentInput;
+    }
+
+    function calculate() {
+      try {
+        currentInput = eval(currentInput).toString();
+        display.innerText = currentInput;
+      } catch {
+        display.innerText = "Error";
+        currentInput = "";
+      }
+    }
+
+    function clearDisplay() {
+      currentInput = "";
+      display.innerText = "0";
+    }
+
+    function backspace() {
+      currentInput = currentInput.slice(0, -1);
+      display.innerText = currentInput || "0";
+    }
+  </script>
+</body>
+</html>
